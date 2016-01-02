@@ -17,7 +17,7 @@ public class BankAccount {
         this.mBalance -= amount;
     }
     public void deposit (double amount){
-        this.mBalance += amount;
+        this.mBalance += amount; //Derek is awesome
     }
 
 }
