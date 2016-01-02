@@ -1,15 +1,23 @@
 package com.example.dmorin.mybank;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText mAmountInput;
+    Button mWithdrawButton;
+    Button mDepositButton;
+    TextView mAmountDisplay;
+
+    BankAccount mCurrentAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +26,41 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        mCurrentAccount = new BankAccount();
+
+        mAmountInput = (EditText)findViewById(R.id.amount_input);
+        mWithdrawButton = (Button)findViewById(R.id.withdraw_button);
+        mDepositButton = (Button)findViewById(R.id.deposit_button);
+        mAmountDisplay = (TextView)findViewById(R.id.balance_display);
+
+        mWithdrawButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String amount = mAmountInput.getText().toString();
+                mCurrentAccount.withdraw(Double.parseDouble(amount));
+                mAmountDisplay.setText("Balance is " + mCurrentAccount.getmBalance());
+            }
+        });
+
+        mDepositButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String amount = mAmountInput.getText().toString();
+                mCurrentAccount.deposit(Double.parseDouble(amount));
+                mAmountDisplay.setText("Balance is " + mCurrentAccount.getmBalance());
+            }
+        });
+
+        mAmountDisplay.setText("Hello World!");
+
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
     }
 
     @Override
