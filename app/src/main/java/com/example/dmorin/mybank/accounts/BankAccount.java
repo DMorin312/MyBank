@@ -1,4 +1,4 @@
-package com.example.dmorin.mybank;
+package com.example.dmorin.mybank.accounts;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public abstract class BankAccount {
     public static final double OVERDRAFT_FEE = 30;
     private Type mType;
 
-    BankAccount(){
+    protected BankAccount(){
         mTransactions = new ArrayList<Double>();
     }
 
@@ -28,7 +28,7 @@ public abstract class BankAccount {
         return total;
     }
 
-    public int numberOfWithdrawls(){
+    protected int numberOfWithdrawls(){
         int count = 0;
         for (int i = 0; i < mTransactions.size(); i++) {
             if (mTransactions.get(i) < 0 ){
