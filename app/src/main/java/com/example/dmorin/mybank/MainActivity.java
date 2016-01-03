@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mCurrentAccount = new BankAccount();
+        mCurrentAccount = new SavingsAccount();
 
         mAmountInput = (EditText)findViewById(R.id.amount_input);
         mWithdrawButton = (Button)findViewById(R.id.withdraw_button);
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String amount = mAmountInput.getText().toString();
                 mCurrentAccount.withdraw(Double.parseDouble(amount));
-                mAmountDisplay.setText("Balance is " + mCurrentAccount.getmBalance());
+                mAmountDisplay.setText("Balance is " + mCurrentAccount.getmBalance()+ " in your " + mCurrentAccount.getmType() + " Account.");
             }
         });
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String amount = mAmountInput.getText().toString();
                 mCurrentAccount.deposit(Double.parseDouble(amount));
-                mAmountDisplay.setText("Balance is " + mCurrentAccount.getmBalance());
+                mAmountDisplay.setText("Balance is " + mCurrentAccount.getmBalance()+ " in your " + mCurrentAccount.getmType() + " Account.");
             }
         });
 
